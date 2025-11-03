@@ -1,0 +1,42 @@
+# Event Attendee Analysis Tool
+
+# --- Initial Data ---
+tech_summit = {"Alice", "Bob", "Charlie", "David", "Eve"}
+product_launch = {"Charlie", "Frank", "Grace", "Alice", "Heidi"}
+exec_dinner = {"Alice", "Bob", "Grace", "Ivy"}
+
+# --- Menu ---
+print("--- Event Attendee Analysis ---")
+print("1: Guests who attended ALL events")
+print("2: Guests who attended Tech Summit & Product Launch, but NOT Exec Dinner")
+print("3: List all unique guests")
+print("4: Check attendance for Exec Dinner")
+
+# --- User Choice ---
+choice = input("Choose an option (1-4): ")
+
+# --- Logic for each option ---
+if choice == "1":
+    all_events = tech_summit & product_launch & exec_dinner
+    print("\nGuests who attended ALL events:")
+    print(all_events if all_events else "No guests attended all three events.")
+
+elif choice == "2":
+    tp_not_exec = (tech_summit & product_launch) - exec_dinner
+    print("\nGuests who attended the Tech Summit and Product Launch but not the Exec Dinner:")
+    print(tp_not_exec if tp_not_exec else "No guests fit this category.")
+
+elif choice == "3":
+    unique_guests = tech_summit | product_launch | exec_dinner
+    print("\nAll unique guests who attended at least one event:")
+    print(unique_guests)
+
+elif choice == "4":
+    person = input("Enter the name of the person to check: ")
+    if person in exec_dinner:
+        print(f"\nYes, {person} was at the Exec Dinner.")
+    else:
+        print(f"\nNo, {person} did not attend the Exec Dinner.")
+
+else:
+    print("\nInvalid choice. Please enter a number between 1 and 4.")
